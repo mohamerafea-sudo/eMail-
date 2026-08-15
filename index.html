@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إرسال الطلبات عبر Gmail</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f5f7;padding:30px 15px}
+.container{max-width:520px;margin:auto}
+.card{background:#fff;padding:25px;border-radius:18px;box-shadow:0 5px 25px rgba(0,0,0,.08)}
+h1{text-align:center;margin:0 0 10px}
+.subtitle{text-align:center;color:#666;line-height:1.6;margin-bottom:25px}
+label{display:block;font-weight:bold;margin-bottom:8px}
+input{width:100%;padding:14px;border:1px solid #ddd;border-radius:10px;font-size:16px;direction:ltr;margin-bottom:22px}
+.email-button{display:block;width:100%;padding:15px;margin-top:12px;border:0;border-radius:10px;color:#fff;background:#d93025;font-size:17px;font-weight:bold;cursor:pointer;text-decoration:none;text-align:center}
+.email-button:nth-of-type(2){background:#1967d2}
+.email-button:nth-of-type(3){background:#188038}
+.email-button:nth-of-type(4){background:#7b1fa2}
+.info{text-align:center;color:#777;font-size:13px;margin-top:20px;line-height:1.6}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>📧 إرسال الطلبات</h1>
+<div class="subtitle">أدخل اسم الطالب كما هو مكتوب في جواز السفر، ثم اختر الرسالة المطلوبة.</div>
+
+<label for="studentName">اسم الطالب كما في جواز السفر</label>
+<input id="studentName" type="text" placeholder="ex:MOHAMMED Z. N. ABUHASSIRA" autocomplete="name">
+
+<a href="#" class="email-button" onclick="sendEmail(1);return false;">📩 إرسال الإيميل الأول</a>
+<a href="#" class="email-button" onclick="sendEmail(2);return false;">📩 إرسال الإيميل الثاني</a>
+<a href="#" class="email-button" onclick="sendEmail(3);return false;">📩 إرسال الإيميل الثالث</a>
+<a href="#" class="email-button" onclick="sendEmail(4);return false;">📩 إرسال الإيميل الرابع</a>
+
+<div class="info">بعد الضغط، ستفتح رسالة البريد جاهزة. راجعها ثم اضغط «إرسال».</div>
+</div>
+</div>
+
+<script>
+const email1 = {
+to: "inter-students@minobrnauki.gov.ru,info@minobrnauki.gov.ru",
+cc: "",
+subject: "Срочное обращение студента из Газы: Возобновление процедур выезда получателей образовательных квот РФ",
+body: `Уважаемые представители Министерства науки и высшего образования Российской Федерации!
+
+Я, палестинский студент из сектора Газа, обращаюсь к вам от своего имени и от имени группы из примерно 120 палестинских студентов — получателей государственных образовательных квот РФ 2024, 2025 и 2026 годов.
+
+Мы оказываемся в критической ситуации и изо всех сил боремся за сохранение своих учебных мест в рамках выделенной квоты, поскольку это наш единственный путь к продолжению образования и реализации наших мечт. Мы очень надеемся, что сможем приступить к учебе в этом году — пожалуйста, не оставляйте нас.
+
+В октябре 2025 года наш вопрос достиг существенного прогресса в координации выезда через КПП «Керем-Шалом», однако процесс не был завершен из-за затруднений с транзитом через Иорданию. Надеемся на поддержку Министерства в возобновлении ранее начатых процедур и координации без необходимости начинать весь процесс заново.
+
+Просим также оказать содействие в взаимодействии с МИД РФ и дипломатическими представительствами для согласования маршрута, а также содействовать в сохранении предоставленных нам образовательных квот и мест в российских университетах.
+
+Подчеркиваем, что студенты готовы самостоятельно покрыть абсолютно все расходы на транспортировку, транзит и авиабилеты. Нам необходима исключительно институциональная поддержка и официальная координация.
+
+Мы готовы незамедлительно предоставить актуализированный список студентов (120 человек), паспортные данные, документы о квотах, направления, визы и подтверждения от университетов.
+
+Просим направлять всю официальную информацию и ответы на наш единый студенческий e-mail: russiastudentsgaza@gmail.com
+
+С глубоким уважением, признательностью и надеждой,
+ФИО: {{STUDENT_NAME}}`
+};
+
+const email2 = {
+to: "example2@example.com",
+cc: "",
+subject: "Student Request from Gaza",
+body: `Dear Sir/Madam,
+
+I am a Palestinian student from Gaza and I am writing regarding my educational scholarship.
+
+My name as shown in my passport is:
+
+{{STUDENT_NAME}}
+
+I kindly request your assistance regarding my case.
+
+Thank you for your consideration.
+
+Sincerely,
+
+{{STUDENT_NAME}}`
+};
+
+const email3 = {
+to: "example3@example.com",
+cc: "",
+subject: "Urgent Student Request",
+body: `Dear Sir/Madam,
+
+I am writing to request assistance regarding my educational opportunity.
+
+Student name as shown in passport:
+
+{{STUDENT_NAME}}
+
+I would be grateful for your support.
+
+Sincerely,
+
+{{STUDENT_NAME}}`
+};
+
+const email4 = {
+to: "example4@example.com",
+cc: "",
+subject: "Educational Quota Request",
+body: `Dear Sir/Madam,
+
+Please find my request regarding my educational quota.
+
+Student name as shown in passport:
+
+{{STUDENT_NAME}}
+
+Thank you for your assistance.
+
+Sincerely,
+
+{{STUDENT_NAME}}`
+};
+
+const emails = {1:email1,2:email2,3:email3,4:email4};
+
+function sendEmail(number){
+    const studentName = document.getElementById("studentName").value.trim();
+
+    if(!studentName){
+        alert("يرجى إدخال اسم الطالب كما هو في جواز السفر.");
+        document.getElementById("studentName").focus();
+        return;
+    }
+
+    const email = emails[number];
+    const finalBody = email.body.replace(/{{STUDENT_NAME}}/g, studentName);
+
+    const mailto =
+        "mailto:" + encodeURIComponent(email.to) +
+        "?cc=" + encodeURIComponent(email.cc) +
+        "&subject=" + encodeURIComponent(email.subject) +
+        "&body=" + encodeURIComponent(finalBody);
+
+    window.location.href = mailto;
+}
+</script>
+</body>
+</html>
